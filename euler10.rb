@@ -2,7 +2,6 @@ class Candidates
   include Enumerable
 
   def initialize
-
     @base = 10
   end
 

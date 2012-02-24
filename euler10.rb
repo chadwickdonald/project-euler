@@ -7,6 +7,7 @@ class Candidates
 
   def each
     loop do
+	p "Candidates.each"
       [1,3,7,9].each { |i| yield @base + i }
       @base += 10
     end
@@ -14,7 +15,6 @@ class Candidates
 end
 
 class Euler10
-	puts "hi"
   include Enumerable
 
   def initialize()
@@ -23,9 +23,12 @@ class Euler10
   end
 
   def each
-    @primearr.each { |i| yield i }
+	p "Euler10.each"
+    @primearr.each { |i|
+		p "primearr.each: #{i}" 
+		yield i }
     @candidates.each { |candidate|
-      
+      p "candidate: #{candidate}"
       root = Math.sqrt candidate
       testelem = @primearr.find { |i| (i > root) || (candidate % i == 0) }
       if testelem > root
@@ -36,4 +39,5 @@ class Euler10
   end
 end
 
-puts Euler10.new().take_while {|i| i < 2000000}.reduce(:+)
+#puts Euler10.new().take_while {|i| i < 2000000}.reduce(:+)
+puts Euler10.new().take_while {|i| i < 20}.reduce(:+)
